@@ -42,7 +42,9 @@ document.addEventListener('DOMContentLoaded',() =>{
     function masodikFeladat(Lista){
         let szulo = document.getElementById('feladat2ki');
 
-        szulo.textContent="";
+        while(szulo.firstChild){
+            szulo.removeChild();
+        }
         
             for(let e of Lista){
                 let li = document.createElement('li');
@@ -66,8 +68,10 @@ document.addEventListener('DOMContentLoaded',() =>{
 
     function harmadikFeladat(Lista){
 
-
         let szulo = document.getElementById('feladat3ki');
+
+        hossz=[];
+        szulo.textContent=" ";
 
         for(let e of Lista){
             hossz.push(e.length);
@@ -86,7 +90,7 @@ document.addEventListener('DOMContentLoaded',() =>{
 
         for(let e of List){
             if(e.author==szerzo){
-                darab++
+                darab++;
             }
         }
 
