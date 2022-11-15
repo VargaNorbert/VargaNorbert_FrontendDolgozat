@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded',() =>{
 
     let list;
     let idezetek =[];
-    let hossz= [];
 
     async function adatBetoltes() {
         let response = await fetch('/quotes.json');
@@ -14,15 +13,15 @@ document.addEventListener('DOMContentLoaded',() =>{
 
     adatBetoltes();
 
-    function elsoFeladat(usersLista){
+    function elsoFeladat(Lista){
         let szulo = document.getElementById('feladat1ki');
 
         szulo.textContent="";
 
-        usersLista = usersLista.sort((a, b) => { return a.author>b.author ? 1:-1});
+        Lista = Lista.sort((a, b) => { return a.author>b.author ? 1:-1});
 
 
-        for(let e of usersLista){
+        for(let e of Lista){
                 let li = document.createElement('li');
                 let q= document.createElement('q');
                 let p = document.createElement('p');
@@ -33,8 +32,9 @@ document.addEventListener('DOMContentLoaded',() =>{
     }
     };
 
-    function masodikFeladatListaFeltoltes(usersLista){
-        for(let e of usersLista){
+    function masodikFeladatListaFeltoltes(Lista){
+        idezetek=[];
+        for(let e of Lista){
             idezetek.push(e.quote);
         } 
     };
@@ -49,12 +49,12 @@ document.addEventListener('DOMContentLoaded',() =>{
             for(let e of Lista){
                 let li = document.createElement('li');
                 
-                let quotes = e.split(' ');
-                for(let i = 0; i < quotes.length; i++){
-                    if(quotes[i] == 'the' || quotes[i] == 'The'){
-                        quotes[i] = quotes[i].bold();
+                let q = e.split(' ');
+                for(let i = 0; i < q.length; i++){
+                    if(q[i] == 'the' || q[i] == 'The'){
+                        q[i] = q[i].bold();
                     }
-                    li.innerHTML += quotes[i] + ' ';
+                    li.innerHTML += q[i] + ' ';
                 }
     
                 szulo.appendChild(li);
@@ -70,16 +70,20 @@ document.addEventListener('DOMContentLoaded',() =>{
 
         let szulo = document.getElementById('feladat3ki');
 
-        hossz=[];
-        szulo.textContent=" ";
+        let lista= " ";
+        let hossz=[];
 
         for(let e of Lista){
             hossz.push(e.length);
         }
 
-        let lista = hossz.join(', ');
+        console.log(lista);
+        console.log(hossz);
 
-        szulo.textContent= lista;
+        lista = hossz.join(', ');
+
+
+        szulo.textContent = lista;
 
     }
 
